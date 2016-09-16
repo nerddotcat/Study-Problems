@@ -23,8 +23,15 @@ public class Main
 		rsTest.addTest("racecar", "racecar");
 		rsTest.runTests();
 		
-		//String input = "abcd1234";
-		//System.out.printf("in: %s\nout: %s\n", input, uc.run(input));
+		CheckPermutation cperm = new CheckPermutation();
+		Test cpermTest = new Test(cperm);
+		cpermTest.addTest("hello\nolleh", "True");
+		cpermTest.addTest("abcdef\nabcdef", "True");
+		cpermTest.addTest("abcdef\nabccef", "False");
+		cpermTest.addTest("abccef\nabcdef", "False");
+		cpermTest.addTest("1111111\n2222222222", "False");
+		cpermTest.runTests();
+		
 		
 		
 	}
