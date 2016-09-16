@@ -33,6 +33,13 @@ public class Main
 		cpermTest.runTests();
 		
 		
+		Replace rep = new Replace();
+		Test repTest = new Test(rep);
+		repTest.addTest("Hello World", "Hello%20World");
+		repTest.addTest("racecar", "racecar");
+		repTest.addTest("  a b c d", "%20%20a%20b%20c%20d");
+		repTest.runTests();
+		
 		
 	}
 	
