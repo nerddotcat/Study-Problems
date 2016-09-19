@@ -84,6 +84,16 @@ public class Main
 				"0 0 0 0\n");
 		zrcTest .runTests();
 		
+		CheckRotation cr = new CheckRotation();
+		Test crTest = new Test(cr);
+		crTest.addTest("waterbottle erbottlewat", "True");
+		crTest.addTest("waterbottle erottlewaa", "False");
+		crTest.addTest("2222 erbottlewa", "False");
+		crTest.addTest("111 111111", "False");
+		crTest.addTest("world orldw", "True");
+		crTest.addTest("wakka Wakka", "False");
+		crTest.runTests();
+		
 		
 	}
 	
