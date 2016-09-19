@@ -62,6 +62,28 @@ public class Main
 				"16 12 8 4\n");
 		arTest .runTests();
 		
+		ZeroRowCol zrc = new ZeroRowCol();
+		Test zrcTest = new Test(zrc);
+		zrcTest.addTest("4 4\n" +
+				"1 2 3 4\n" +
+				"5 0 7 8\n" +
+				"9 10 11 12\n" +
+				"13 14 15 16\n",
+				"1 0 3 4\n" +
+				"0 0 0 0\n" +
+				"9 0 11 12\n" +
+				"13 0 15 16\n");
+		zrcTest.addTest("4 4\n" +
+				"1 2 3 4\n" +
+				"5 0 7 8\n" +
+				"9 10 11 12\n" +
+				"13 14 15 0\n",
+				"1 0 3 0\n" +
+				"0 0 0 0\n" +
+				"9 0 11 0\n" +
+				"0 0 0 0\n");
+		zrcTest .runTests();
+		
 		
 	}
 	
