@@ -48,6 +48,21 @@ public class Main
 		bcTest.addTest("aaaaaaaaaa", "a10");
 		bcTest.runTests();
 		
+		
+		ArrayRotate ar = new ArrayRotate();
+		Test arTest = new Test(ar);
+		arTest.addTest("4\n" +
+				"1 2 3 4\n" +
+				"5 6 7 8\n" +
+				"9 10 11 12\n" +
+				"13 14 15 16\n",
+				"13 9 5 1\n" +
+				"14 10 6 2\n" +
+				"15 11 7 3\n" +
+				"16 12 8 4\n");
+		arTest .runTests();
+		
+		
 	}
 	
 }
