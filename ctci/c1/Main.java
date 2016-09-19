@@ -40,6 +40,13 @@ public class Main
 		repTest.addTest("  a b c d", "%20%20a%20b%20c%20d");
 		repTest.runTests();
 		
+		BasicCompress bs = new BasicCompress();
+		Test bcTest = new Test(bs);
+		bcTest.addTest("aabcccccaaa", "a2b1c5a3");
+		bcTest.addTest("racecar", "racecar");
+		bcTest.addTest("", "");
+		bcTest.addTest("aaaaaaaaaa", "a10");
+		bcTest.runTests();
 		
 	}
 	
