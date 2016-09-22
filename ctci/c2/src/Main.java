@@ -1,3 +1,5 @@
+import java.util.Stack;
+
 
 public class Main
 {
@@ -23,6 +25,16 @@ public class Main
 		Node.printList(head);
 		removeDupes(head);
 		Node.printList(head);
+		
+		Node a = kthToLast(head, 1);
+		if(a != null)
+			System.out.println(a.data);
+		a = kthToLast(head, 0);
+		if(a != null)
+			System.out.println(a.data);
+		a = kthToLast(head, 3);
+		if(a != null)
+			System.out.println(a.data);
 	}
 	
 	
@@ -51,7 +63,7 @@ public class Main
 			return;
 		}
 		
-		System.out.printf("c: %d - %d\n", current.data,val);
+		//System.out.printf("c: %d - %d\n", current.data,val);
 		
 		if(current.next != null && current.next.data == val)
 		{
@@ -63,6 +75,32 @@ public class Main
 			recRemove(current.next,val);
 		}
 		
+	}
+	
+	public Node kthToLast(Node head,int pos)
+	{
+		//Node found = null;
+		Stack<Node> found = new Stack<Node>();
+		recKthToLast(head, found, pos);
+		return found.peek();		
+	}
+	
+	public int recKthToLast(Node current, Stack<Node> stack, int pos)
+	{
+		if(current == null)
+		{
+			return -1;
+		}
+		
+		int sum = recKthToLast(current.next, stack, pos) + 1;
+		//System.out.println(" sum " + sum);
+		//System.out.println(" pos "+ pos);
+		
+		if(sum <= pos)
+		{
+			stack.push(current);
+		}
+		return sum;
 	}
 	
 }
