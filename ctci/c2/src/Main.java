@@ -1,3 +1,6 @@
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 
@@ -53,10 +56,142 @@ public class Main
 		head = partition(head,kthToLast(head, 4));
 		Node.printList(head);
 		
+		Node left = new Node(1);
+		left.appendToTail(0);
+		left.appendToTail(2);
+		left.appendToTail(5);
+		
+		Node right = new Node(5);
+		right.appendToTail(0);
+		
+		System.out.println(sum(left,right));
+		
+		
+		Node p = new Node(1);
+		p.appendToTail(5);
+		p.appendToTail(6);
+		p.appendToTail(5);
+		p.appendToTail(1);
+		Node.printList(p);
+		System.out.println(isPalindrome(p));
+		
+		Node q = new Node(1);
+		q.appendToTail(3);
+		q.appendToTail(3);
+		q.appendToTail(7);
+		Node.printList(q);
+		System.out.println(isPalindrome(q));
+		
+		Node r = new Node(1);
+		r.appendToTail(2);
+		r.appendToTail(3);
+		r.appendToTail(4);
+		r.appendToTail(5);
+		//create loop
+		kthToLast(r, 0).next = kthToLast(r,3);
+		System.out.println(findLoop(r).data);
 		
 		
 	}
 	
+	
+	public Node findLoop(Node head)
+	{
+		Node found = null;
+		
+		Node cur = head;
+		HashMap<Node,Node> seen = new HashMap<Node,Node>();
+		while(cur != null)
+		{
+			
+			if(seen.containsKey(cur.next))
+			{
+				return cur.next;
+			}
+			else
+			{
+				seen.put(cur, cur);
+			}
+			
+			cur = cur.next;
+		}
+		
+		
+		return found;
+	}
+	
+	/*
+	 * Implement a function to check if a linked list is a palindrome. 
+	 */
+	
+	public boolean isPalindrome(Node head)
+	{
+		Queue<Integer> forward = new LinkedList<Integer>();
+		Stack<Integer> reverse = new Stack<Integer>();
+		
+		Node current = head;
+		while(current != null)
+		{
+			forward.add(current.data);
+			reverse.push(current.data);
+			current = current.next;
+		}
+		
+		int decimal = 1;
+		int result = 0;
+		while(!forward.isEmpty())
+		{
+			if(forward.poll() !=  reverse.pop())
+			{
+				return false;
+			}
+		}
+		
+		
+		return true;
+	}
+	
+	
+	/*
+	 * You have two numbers represented by a linked list, where each node contains a single digit.
+	 * The digits are stored in reverse order, such that the Ts digit is at the head of the list.
+	 * Write a function that adds the two numbers and returns the sum as a linked list.
+	 * 
+	 */
+	public int sum(Node a, Node b)
+	{
+		
+		return getVal(a) + getVal(b);
+	}
+	
+	//returns decimal representaton of linked list
+	public int getVal(Node head)
+	{
+		Stack<Integer> vals = new <Integer>Stack();
+		
+		Node current = head;
+		while(current != null)
+		{
+			vals.push(current.data);
+			current = current.next;
+		}
+		
+		int decimal = 1;
+		int result = 0;
+		while(!vals.empty())
+		{
+			result += vals.pop() * decimal;
+			decimal *= 10;
+		}
+		
+		return result;
+	}
+	
+	/*
+	 * Write code to partition a linked list around a value x,
+	 * such that all nodes less than x come before all nodes greater than or equal to x.
+	 * 
+	 */
 	public Node partition(Node head, Node middle)
 	{
 		
