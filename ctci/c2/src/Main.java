@@ -35,8 +35,101 @@ public class Main
 		a = kthToLast(head, 3);
 		if(a != null)
 			System.out.println(a.data);
+		
+		a = kthToLast(head, 1);
+		middleRemove(a);
+		
+		Node.printList(head);
+		
+		head.appendToTail(6);
+		head.appendToTail(7);
+		head.appendToTail(20);
+		head.appendToTail(50);
+		head.appendToTail(30);
+		head.appendToTail(15);
+		head.appendToTail(55);
+		Node.printList(head);
+		
+		head = partition(head,kthToLast(head, 4));
+		Node.printList(head);
+		
+		
+		
 	}
 	
+	public Node partition(Node head, Node middle)
+	{
+		
+		
+		Node cur = head;
+		Node lowerHead = null;
+		Node higherHead = null;
+		while(cur != null)
+		{
+			Node next = cur.next;
+			
+			if(cur != middle)
+			{
+				if(cur.data <= middle.data)
+				{
+					if(lowerHead == null)
+					{
+						lowerHead = cur;
+						cur.next = null;
+					}
+					else
+					{
+						cur.next=lowerHead;
+						lowerHead = cur;
+					}
+				}
+				else
+				{
+					if(higherHead == null)
+					{
+						higherHead = cur;
+						cur.next = null;
+					}
+					else
+					{
+						cur.next=higherHead;
+						higherHead = cur;
+					}
+				}
+				
+			}
+			
+			cur = next;
+		}//end while loop
+		
+		if( lowerHead == null )
+		{
+			lowerHead = middle;
+			
+		}
+		else
+		{
+			kthToLast(lowerHead,0).next = middle;	
+		}
+		
+		middle.next = higherHead;
+		
+		
+		return lowerHead;
+	}
+	
+	/*
+	 * Implement an algorithm to delete a node in the middle of a singly linked list,
+	 * given only access to that node.
+	 * 
+	 */
+	public void middleRemove(Node node)
+	{
+		
+		node.data = node.next.data;
+		node.next = node.next.next;
+		
+	}
 	
 	/*
 	 * 	Write code to remove duplicates from an unsorted linked list.
