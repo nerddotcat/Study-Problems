@@ -1,3 +1,5 @@
+import java.util.Stack;
+
 
 public class Main
 {
@@ -21,8 +23,50 @@ public class Main
 		System.out.println(st.pop());
 		System.out.println(st.pop());
 		System.out.println(st.toString());
+		
+		
+		int tohSize = 5;
+		Stack a = new Stack();
+		Stack b = new Stack();
+		Stack c = new Stack();
+		for (int i = 0; i < tohSize; i++)
+		{
+			a.add(tohSize-i);
+		}
+		System.out.println("Starting");
+		System.out.println(a.toString());
+		System.out.println(b.toString());
+		System.out.println(c.toString());
+		tohSolve(a.size(),a,b,c);
+		System.out.println("Ending");
+		System.out.println(a.toString());
+		System.out.println(b.toString());
+		System.out.println(c.toString());
+		
+		
 	}
 	
+	/*
+	 * In the classic problem of the Towers of Hanoi, you have 3 towers and Ndisks of different
+	 * sizes which can slide onto any tower.Thepuzzlestartswithdiskssorted in ascending order of
+	 * size from top to bottom (i.e., each disk sits on top of an even larger one).
+	 */
+	public void tohSolve(int height, Stack current, Stack buffer, Stack goal)
+	{
+		if(height > 0)
+		{
+			//move everything except bottom to buffer
+			tohSolve(height-1, current, goal, buffer);
+			
+			//move bottom to goal
+			goal.push(current.pop());
+			
+			//move buffer to goal
+			tohSolve(height -1, buffer, current, goal);
+			
+		}
+		
+	}
 	
 	
 	/*
