@@ -26,9 +26,9 @@ public class Main
 		
 		
 		int tohSize = 5;
-		Stack a = new Stack();
-		Stack b = new Stack();
-		Stack c = new Stack();
+		Stack<Integer> a = new Stack<Integer>();
+		Stack<Integer> b = new Stack<Integer>();
+		Stack<Integer> c = new Stack<Integer>();
 		for (int i = 0; i < tohSize; i++)
 		{
 			a.add(tohSize-i);
@@ -42,6 +42,16 @@ public class Main
 		System.out.println(a.toString());
 		System.out.println(b.toString());
 		System.out.println(c.toString());
+		
+		MyQueue q = new MyQueue();
+		for (int i = 0; i < 5; i++)
+		{
+			q.enqueue(i);
+		}
+		System.out.println(q.dequeue());
+		System.out.println(q.dequeue());
+		System.out.println(q.dequeue());
+		System.out.println(q.dequeue());
 		
 		
 	}
