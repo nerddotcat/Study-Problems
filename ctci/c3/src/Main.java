@@ -53,15 +53,70 @@ public class Main
 		System.out.println(q.dequeue());
 		System.out.println(q.dequeue());
 		
+		Stack<Integer> sts = new Stack<>();
+		sts.push(50);
+		sts.push(60);
+		sts.push(10);
+		sts.push(70);
+		sts.push(30);
+		sts.push(40);
+		sts.push(100);
+		sts.push(1);
+		System.out.println(sts.toString());
+		stackSort(sts);
+		System.out.println(sts.toString());
+	}
+	
+	/*
+	 * Write a program to sort a stack in ascending order (with biggest items on top).
+	 * You may use at most one additional stack to hold items, but you may not copy the
+	 * elements into any other data structure (suchasan array).
+	 * The stack supports the following operations: push, pop, peek, and isEmpty.
+	 * 
+	 * n^2 terrible sorting algorithm, fun!
+	 */
+	public void stackSort(Stack<Integer> st)
+	{
+		Stack<Integer> temp = new Stack<Integer>();
+		
+		int sorted = 0;
+		int total = st.size();
+		while(sorted < st.size())
+		{
+			int current = st.pop();
+			int smallest = current;
+			
+			for (int i = 1; i < total - sorted; i++)
+			{
+				current = st.pop();
+				if(current < smallest)
+				{
+					temp.push(smallest);
+					smallest = current;
+				}
+				else
+					temp.push(current);
+			}
+			
+			st.push(smallest);
+			sorted++;
+			//move everything back
+			while(!temp.isEmpty())
+			{
+				st.push(temp.pop());
+			}
+		}
+		
 		
 	}
+	
 	
 	/*
 	 * In the classic problem of the Towers of Hanoi, you have 3 towers and Ndisks of different
 	 * sizes which can slide onto any tower.Thepuzzlestartswithdiskssorted in ascending order of
 	 * size from top to bottom (i.e., each disk sits on top of an even larger one).
 	 */
-	public void tohSolve(int height, Stack current, Stack buffer, Stack goal)
+	public void tohSolve(int height, Stack<Integer> current, Stack<Integer> buffer, Stack<Integer> goal)
 	{
 		if(height > 0)
 		{
