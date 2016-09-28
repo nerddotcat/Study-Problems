@@ -65,6 +65,34 @@ public class Main
 		System.out.println(sts.toString());
 		stackSort(sts);
 		System.out.println(sts.toString());
+		
+		Shelter sh = new Shelter();
+		
+		sh.enqueue(AnimalType.CAT, "Spots");
+		sh.enqueue(AnimalType.DOG, "Max");
+		sh.enqueue(AnimalType.CAT, "Snowball");
+		sh.enqueue(AnimalType.DOG, "Jade");
+		sh.enqueue(AnimalType.CAT, "Moo");
+		sh.enqueue(AnimalType.CAT, "Oscar");
+		sh.enqueue(AnimalType.DOG, "Lucy");
+		
+		Animal tempAnimal = sh.dequeueAny();
+		System.out.printf("got %s - %s\n",tempAnimal.type,tempAnimal.name);
+		tempAnimal = sh.dequeueAny();
+		System.out.printf("got %s - %s\n",tempAnimal.type,tempAnimal.name);
+		tempAnimal = sh.dequeueDog();
+		System.out.printf("got %s - %s\n",tempAnimal.type,tempAnimal.name);
+		sh.enqueue(AnimalType.DOG, "Roofus");
+		sh.enqueue(AnimalType.CAT, "Peaches");
+		tempAnimal = sh.dequeueDog();
+		System.out.printf("got %s - %s\n",tempAnimal.type,tempAnimal.name);
+		tempAnimal = sh.dequeueCat();
+		System.out.printf("got %s - %s\n",tempAnimal.type,tempAnimal.name);
+		tempAnimal = sh.dequeueCat();
+		System.out.printf("got %s - %s\n",tempAnimal.type,tempAnimal.name);
+		tempAnimal = sh.dequeueCat();
+		System.out.printf("got %s - %s\n",tempAnimal.type,tempAnimal.name);
+		
 	}
 	
 	/*
