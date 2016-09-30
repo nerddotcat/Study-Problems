@@ -65,8 +65,6 @@ public class Shelter
 
 class Animal
 {
-	
-	
 	AnimalType type;
 	String name;
 	
