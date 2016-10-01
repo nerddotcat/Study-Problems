@@ -60,9 +60,32 @@ public class BinTree
 	//TODO: finish this
 	public boolean checkBalance()
 	{
-		
-		return false;
+		BalInfo b = new BalInfo();
+		b.isBal = true;
+		recCB(root,b);
+		return b.isBal;
 	}
+	
+	//i dont like this way of recording balance status
+	private int recCB(Node current, BalInfo balInfo)
+	{
+		
+		if(current == null)
+		{
+			return 0;
+		}
+		int rHeight = recCB(current.right, balInfo);
+		int lHeight = recCB(current.left, balInfo);
+		System.out.printf("%d : %d : %d\n", current.data, lHeight, rHeight);
+		if(Math.abs(rHeight-lHeight) > 1)
+		{
+			//do something to note that it is not balanced
+			balInfo.isBal = false;
+		}
+		
+		return Math.max(lHeight, rHeight) + 1;
+	}
+	
 	
 	private void strTraverse(StringBuilder output, int level, Node current)
 	{
@@ -100,9 +123,14 @@ public class BinTree
 	
 }
 
+class BalInfo
+{
+	public boolean isBal = false;
+}
 
 class Node
 {
+	int height = -1;
 	int data;
 	Node left;
 	Node right;

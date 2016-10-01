@@ -18,10 +18,10 @@ public class Main
 		bt.bstAdd(75);
 		bt.bstAdd(100);
 		bt.bstAdd(60);
-		
+		bt.bstAdd(110);
 		System.out.println(bt);
 		
-		
+		System.out.printf("is balanced? %s\n", bt.checkBalance());
 		
 	}
 	
