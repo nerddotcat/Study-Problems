@@ -1,4 +1,6 @@
-import java.util.Collections;
+import java.security.SecureRandom;
+import java.util.ArrayList;
+import java.util.LinkedList;
 
 
 
@@ -10,6 +12,53 @@ public class BinTree
 	public BinTree()
 	{
 		root = null;
+	}
+	
+	public void randomAdd(int data)
+	{
+		SecureRandom sr = new SecureRandom();
+		
+		Node newNode = new Node(data);
+		
+		if(root == null)
+		{
+			root = newNode;
+		}
+		else
+		{
+			Node current = root;
+			Boolean inserted = false;
+			
+			while(!inserted)
+			{
+				int temp = sr.nextInt(2);
+				if(temp == 0)
+				{
+					if(current.left == null)
+					{
+						current.left = newNode;
+						inserted = true;
+					}
+					else
+					{
+						current = current.left;
+					}
+				}
+				else
+				{
+					if(current.right == null)
+					{
+						current.right = newNode;
+						inserted = true;
+					}
+					else
+					{
+						current = current.right;
+					}
+				}
+			}
+			
+		}
 	}
 	
 	public void bstAdd(int data)
@@ -57,7 +106,71 @@ public class BinTree
 		
 	}
 	
-	//TODO: finish this
+	/*
+	 * Implement a function to check if a binary tree is a binary search tree.
+	 */
+	public boolean isBST()
+	{
+		return recIsBst(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
+	}
+	
+	private boolean recIsBst(Node n, int min, int max)
+	{
+		if(n == null)
+		{
+			return true;
+		}
+		
+		boolean check = true;
+		
+		if( n.data < min || n.data >= max)
+		{
+			check = false;
+		}
+		
+		boolean left = recIsBst(n.left,min,n.data);
+		boolean right = recIsBst(n.right,n.data+1,max);
+		
+		return check && left && right;
+	}
+	
+	public ArrayList<LinkedList<Node>> getDepthLists()
+	{
+		ArrayList<LinkedList<Node>> out = new ArrayList<LinkedList<Node>>();
+		
+		LinkedList<Node> toVisit = new LinkedList<>();
+		toVisit.add(root);
+		root.height = 0;
+		
+		
+		while( !toVisit.isEmpty() )
+		{
+			Node current = toVisit.removeFirst();
+			
+			//add node
+			if(out.size() < current.height + 1 )
+			{
+				out.add(new LinkedList<Node>());
+			}
+			out.get(current.height).addLast(current);
+			
+			//look at rest
+			if(current.left != null)
+			{
+				current.left.height = current.height + 1;
+				toVisit.addLast(current.left);
+			}
+			if(current.right != null)
+			{
+				current.right.height = current.height + 1;
+				toVisit.addLast(current.right);
+			}
+		}
+		
+		
+		return out;
+	}
+	
 	public boolean checkBalance()
 	{
 		BalInfo b = new BalInfo();
@@ -121,6 +234,7 @@ public class BinTree
 	}
 	
 	
+	
 }
 
 class BalInfo
@@ -138,6 +252,16 @@ class Node
 	public Node(int data)
 	{
 		this.data = data;
+	}
+	
+	public void reset()
+	{
+		height = -1;
+	}
+	
+	public String toString()
+	{
+		return Integer.toString(data);
 	}
 	
 }

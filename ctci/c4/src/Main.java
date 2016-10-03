@@ -42,6 +42,11 @@ public class Main
 		arrayToBST(bt2,ar,0,ar.length);
 		System.out.println(bt2);
 		
+		System.out.println(bt2.getDepthLists());
+		System.out.println(bt2.isBST());
+		bt2.randomAdd(100);
+		System.out.println(bt2);
+		System.out.println(bt2.isBST());
 	}
 
 	/*
