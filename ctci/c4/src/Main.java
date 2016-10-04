@@ -1,6 +1,13 @@
 public class Main
 {
-
+	
+	/*
+	 * Chapter 4 TODO:
+	 *   
+	 * 7,8,9
+	 * 
+	 */
+	
 	public static void main(String[] args)
 	{
 		new Main().run();
@@ -48,7 +55,25 @@ public class Main
 		System.out.println(bt2);
 		System.out.println(bt2.isBST());
 	}
-
+	
+	
+	/*
+	 * Write an algorithm to find the'next'node (i.e., in-order successor) of a given node in a binary search tree.
+	 * You may assume that each node has a link to its parent.
+	 * 
+	 * left, visit, right
+	 * 
+	 * dont feel like updating all the binary tree code right now:
+	 * to find a successor
+	 * if node -> right not null
+	 * 		node -> right -> left until null
+	 * else if parent == null
+	 * 		node -> right -> left until null
+	 * else
+	 * 		node -> parent -> right -> left until null
+	 * 
+	 */
+	
 	/*
 	 * Given a sorted (increasingorder) array with unique integer elements,
 	 * write an algorithm to createa binary search tree with minimal height.
