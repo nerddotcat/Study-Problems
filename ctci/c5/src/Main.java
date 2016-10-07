@@ -26,6 +26,18 @@ public class Main
 	}
 	
 	/*
+	 * Explainwhatthefollowingcodedoes:((n & (n-1)) == 0)
+	 * 
+	 * 100 - 1 = 011 & 100 -> 0
+	 * 
+	 * 101 - 1 = 100 & 101 -> 100
+	 * 110 - 1 = 101 & 110 -> 100 
+	 * 1100 - 1 = 1011 & 1100 -> 1000
+	 * 
+	 * check to see if the value is a power of two
+	 */
+	
+	/*
 	 * You are given two 32-bit numbers, Nand M, and two bit positions, l a n d j . Write 
 	 * a method to insert M into Nsuch that M starts at bit j and ends at bit i. You can
 	 * assume that the bits j through i have enough space to fit all of M.

@@ -4,7 +4,7 @@ public class Main
 	/*
 	 * Chapter 4 TODO:
 	 *   
-	 * 7,8,9
+	 * 8,9
 	 * 
 	 */
 	
@@ -54,6 +54,9 @@ public class Main
 		bt2.randomAdd(100);
 		System.out.println(bt2);
 		System.out.println(bt2.isBST());
+		
+		System.out.println(bt2.findCommonAncestor(7, 100));
+		
 	}
 	
 	

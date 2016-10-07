@@ -107,6 +107,49 @@ public class BinTree
 	}
 	
 	/*
+	 * The way i have implemented binary trees, using Node.data attribute
+	 * as a unique id
+	 * 
+	 */
+	
+	
+	private Node foundAncestor;
+	public Node findCommonAncestor(int id1, int id2)
+	{
+		foundAncestor = null;
+		recCommonAncestor(root,id1,id2);
+		return foundAncestor;
+	}
+	
+	private ArrayList<Integer> recCommonAncestor(Node current,int id1, int id2)
+	{
+		if(current == null)
+		{
+			return new ArrayList<Integer>();
+		}
+		//left,right,visit
+		ArrayList<Integer> left = recCommonAncestor(current.left, id1, id2);
+		ArrayList<Integer> right = recCommonAncestor(current.right, id1, id2);
+		
+		if( (left.contains(id1)||left.contains(id2)) && 
+			(right.contains(id1)||right.contains(id2))
+			)
+		{
+			if(foundAncestor == null)
+			{
+				foundAncestor = current;
+			}
+		}
+		
+		ArrayList<Integer> next = new ArrayList<Integer>(left);
+		next.addAll(right);
+		next.add(current.data);
+		
+		return next;
+	}
+	
+	
+	/*
 	 * Implement a function to check if a binary tree is a binary search tree.
 	 */
 	public boolean isBST()
