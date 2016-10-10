@@ -7,7 +7,7 @@ import java.util.LinkedList;
 public class BinTree
 {
 	
-	Node root;
+	private Node root;
 	
 	public BinTree()
 	{
@@ -61,6 +61,7 @@ public class BinTree
 		}
 	}
 	
+	
 	public void bstAdd(int data)
 	{
 		Node newNode = new Node(data);
@@ -106,13 +107,83 @@ public class BinTree
 		
 	}
 	
+	public Node getRoot()
+	{
+		return root;
+	}
+	
+	/*
+	 * You have two very large binary trees: T1,
+	 * with millions of nodes, and T2, with hundreds
+	 * of nodes. Create an algorithm to decide if T2 is a subtree of T1.
+	 * 
+	 * NOTES: this is an inefficient way to do this
+	 * 		a better way might be to store hashes based on a nodes children
+	 * 
+	 */
+	public boolean hasSubTree(Node root2)
+	{
+		return recHasSubTrees(root, root2);
+	}
+	
+	private boolean recHasSubTrees(Node cur1, Node root2)
+	{
+		if(cur1 == null)
+		{
+			return false;
+		}
+		
+		
+		boolean curSubTree = false;
+		boolean left = false;
+		boolean right = false;
+		if(cur1.data == root2.data)
+		{
+			curSubTree = isSubtree(cur1, root2);
+		}
+		left = recHasSubTrees(cur1.left,root2);
+		right = recHasSubTrees(cur1.right,root2);
+		if(curSubTree || left || right)
+		{
+			return true;
+		}
+		
+		return false;
+		
+	}
+	
+	/*
+	 * recursively checks to see if we have a subtree
+	 */
+	private boolean isSubtree(Node cur1, Node cur2)
+	{
+		//its ok if both are null
+		if(cur1 == null && cur2 == null)
+		{
+			return true;
+		}
+		//its not ok if only one is null
+		if((cur1 == null && cur2 != null)||
+			(cur1 != null && cur2 == null))
+		{
+			return false;
+		}
+		
+		boolean currentEq = cur1.data == cur1.data;
+		if(!currentEq)
+		{
+			return false;
+		}
+		boolean left = isSubtree(cur1.left,cur2.left);
+		boolean right = isSubtree(cur1.right,cur2.right);
+		return left && right;
+	}
+	
 	/*
 	 * The way i have implemented binary trees, using Node.data attribute
 	 * as a unique id
 	 * 
 	 */
-	
-	
 	private Node foundAncestor;
 	public Node findCommonAncestor(int id1, int id2)
 	{

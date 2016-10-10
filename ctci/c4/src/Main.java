@@ -4,7 +4,7 @@ public class Main
 	/*
 	 * Chapter 4 TODO:
 	 *   
-	 * 8,9
+	 * 9
 	 * 
 	 */
 	
@@ -57,6 +57,13 @@ public class Main
 		
 		System.out.println(bt2.findCommonAncestor(7, 100));
 		
+		BinTree bt3 = new BinTree();
+		bt3.bstAdd(9);
+		bt3.bstAdd(8);
+		bt3.bstAdd(10);
+		bt3.bstAdd(7);
+		System.out.println(bt3);
+		System.out.println(bt2.hasSubTree(bt3.getRoot()));
 	}
 	
 	
