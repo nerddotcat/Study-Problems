@@ -2,9 +2,7 @@ public class Main
 {
 	
 	/*
-	 * Chapter 4 TODO:
-	 *   
-	 * 9
+	 * now complete!
 	 * 
 	 */
 	
@@ -64,6 +62,9 @@ public class Main
 		bt3.bstAdd(7);
 		System.out.println(bt3);
 		System.out.println(bt2.hasSubTree(bt3.getRoot()));
+		
+		
+		bt2.printPathsWithSum(9);
 	}
 	
 	

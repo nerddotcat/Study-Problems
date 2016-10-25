@@ -112,6 +112,62 @@ public class BinTree
 		return root;
 	}
 	
+	
+	/*
+	 * You are given a binary tree in which each node contains a value.
+	 * Design an algorithm to print all paths which sum to a given value.
+	 * The path does not need to start or end at the root or a leaf.
+	 * 
+	 */
+	public void printPathsWithSum(int sum)
+	{
+		ArrayList<Node> path = new ArrayList<Node>();
+		
+		recPrintPathsWithSum(root,sum,path);
+	}
+	
+	private void recPrintPathsWithSum(Node current, int sum,ArrayList<Node> path)
+	{
+		if(current == null)
+		{
+			return;
+		}
+		
+		path.add(current);
+		int total = 0;
+		//check path for sum
+		for(int i = 1; i <= path.size(); i++)
+		{
+			total += path.get(path.size()-i).data;
+			if(total == sum)
+			{
+				printPath(path, path.size()-i);
+			}
+		}
+		
+		//recurse down tree
+		
+		recPrintPathsWithSum(current.left,sum,path);
+		recPrintPathsWithSum(current.right,sum,path);
+		
+		//System.out.println(path);
+		path.remove(path.size()-1);
+		
+		
+	}
+	
+	private void printPath(ArrayList<Node> path, int dist)
+	{
+		StringBuilder out = new StringBuilder();
+		out.append(path.get(dist).data);
+		for(int i = dist+1; i < path.size(); i++)
+		{
+			out.append("->");
+			out.append(path.get(i).data);
+		}
+		System.out.println(out.toString());
+	}
+	
 	/*
 	 * You have two very large binary trees: T1,
 	 * with millions of nodes, and T2, with hundreds
