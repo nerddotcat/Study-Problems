@@ -15,7 +15,50 @@ public class Main
 		printBin(a,b,bitInsert(a,b,3,1));
 		//System.out.printf("%s\n",Integer.toBinaryString(bitInsert(a,b,3,1)));
 		
+		double val = .64;
+		System.out.printf("value: %f binary: %s\n",val,decimalToBin(val));
 	}
+	
+	/*
+	 * Given a real number between 0 and 7 (e.g., 0.72) that
+	 * is passed in as a double, print the binary representation.
+	 * If the number cannot be represented accurately in binary
+	 * with at most 32 characters, print "ERROR."
+	 * 
+	 * floating point wackiness with this problem
+	 */
+	public String decimalToBin(double value)
+	{
+		//assuming 1 > value > 0
+		
+		StringBuilder out = new StringBuilder("0.");
+		
+		while(value > 0)
+		{
+			/* removed due to floating point stuff
+			if(out.length()>34)
+			{
+				return "ERROR";
+			}*/
+			
+			double next = value * 2;
+			System.out.println(next);
+			if(next >= 1)
+			{
+				out.append("1");
+				value = next-1;
+			}
+			else
+			{
+				out.append("0");
+				value = next;
+			}
+			
+		}
+		
+		return out.toString();
+	}
+	
 	
 	public void printBin(int a, int b, int c)
 	{
