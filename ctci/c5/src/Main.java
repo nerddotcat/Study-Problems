@@ -17,6 +17,9 @@ public class Main
 		
 		double val = .64;
 		System.out.printf("value: %f binary: %s\n",val,decimalToBin(val));
+		
+		int thisisareallylongvariablenameiwonderhowlongthiscangololol2o343245345245234523452452345 = 32;
+		System.out.println(thisisareallylongvariablenameiwonderhowlongthiscangololol2o343245345245234523452452345);
 	}
 	
 	/*
